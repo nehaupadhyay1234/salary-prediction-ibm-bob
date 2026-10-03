@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f5f0">
+  <meta name="description" content="Estimate salary from years of experience using a regression model trained on the provided dataset.">
+  <title>Salary Signal | Estimate</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="Salary Signal home">
+      <span class="brand-mark" aria-hidden="true">S</span>
+      <span>salary<span class="brand-light">signal</span></span>
+    </a>
+    <div class="topbar-meta">
+      <span class="live-dot"></span> MODEL READY <span class="meta-divider">/</span>
+      <span id="sample-count">35 RECORDS</span>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section class="intro" aria-labelledby="page-title">
+      <div class="eyebrow">CAREER DATA / ESTIMATOR 01</div>
+      <h1 id="page-title">Salary, in perspective.</h1>
+      <p>A data-led estimate based on years of professional experience.</p>
+    </section>
+
+    <section class="workspace" aria-label="Salary estimate">
+      <form class="input-panel" id="estimate-form">
+        <div class="panel-label"><span>01</span> YOUR EXPERIENCE</div>
+        <label class="input-title" for="experience-number">How many years?</label>
+        <div class="number-field">
+          <input id="experience-number" type="number" min="0" max="40" step="0.1" value="5"
+            inputmode="decimal" aria-describedby="experience-help">
+          <span>years</span>
+        </div>
+        <input class="experience-slider" id="experience-slider" type="range"
+          min="0" max="20" step="0.1" value="5" aria-label="Years of experience">
+        <div class="slider-scale" aria-hidden="true">
+          <span>0 years</span>
+          <span>20 years</span>
+        </div>
+        <p class="input-help" id="experience-help">Adjust the slider or enter a value from 0 to 40.</p>
+        <div class="quick-picks" aria-label="Quick experience values">
+          <button type="button" data-years="2">2 yr</button>
+          <button type="button" data-years="5">5 yr</button>
+          <button type="button" data-years="10">10 yr</button>
+        </div>
+      </form>
+
+      <section class="result-panel" aria-labelledby="result-heading">
+        <div class="result-topline">
+          <div class="panel-label panel-label-light"><span>02</span> YOUR ESTIMATE</div>
+          <span class="result-mark" aria-hidden="true">↗</span>
+        </div>
+        <h2 class="result-heading" id="result-heading">Estimated annual salary</h2>
+        <p class="salary-value" id="salary-value" aria-live="polite">—</p>
+        <p class="salary-caption" id="salary-caption">Enter your experience to see an estimate.</p>
+        <div class="result-rule"></div>
+        <div class="result-stats">
+          <div>
+            <span class="stat-label">MONTHLY EQUIVALENT</span>
+            <strong id="monthly-value">—</strong>
+          </div>
+          <div>
+            <span class="stat-label">MODEL FIT (R²)</span>
+            <strong id="r-squared">—</strong>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <section class="chart-section" aria-labelledby="chart-title">
+      <div class="chart-heading">
+        <div>
+          <div class="eyebrow">THE DATA BEHIND THE NUMBER</div>
+          <h2 id="chart-title">Experience &amp; salary</h2>
+        </div>
+        <div class="legend" aria-label="Chart legend">
+          <span><i class="legend-dot"></i> Dataset</span>
+          <span><i class="legend-line"></i> Regression</span>
+        </div>
+      </div>
+      <div class="chart-wrap">
+        <canvas id="salary-chart" role="img"
+          aria-label="Scatter plot of salary by years of experience with a fitted regression line."></canvas>
+        <p class="chart-fallback" id="chart-fallback" hidden>Chart unavailable. The salary estimate is still working.</p>
+      </div>
+      <div class="chart-footnote">
+        <span id="experience-range">TRAINING RANGE: LOADING</span>
+        <span>Salary values shown in USD</span>
+      </div>
+    </section>
+
+    <footer class="disclaimer">
+      <span class="disclaimer-mark" aria-hidden="true">i</span>
+      <p>This estimate reflects a simple linear trend in the supplied dataset, not a guaranteed offer.
+        Actual pay varies by role, location, industry, and other factors.</p>
+    </footer>
+  </main>
+</body>
+</html>
